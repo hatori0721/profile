@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="icon" href="/img/java-icon.jpg" sizes="180x180">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ホーム</title>
 
-    <!--このサイトのlink https://hatori0721.github.io/profile/blog/index.html -->
-  </head>
-  <body>
-    <h1>このサイトについて</h1>
-    <p1>このサイトはチルとも！が運営している個人ブログです。</p1>
-    
-    <header class="topNavigation">
-        <!-- <p><a href="https://google.com">GoogleのWebサイト</a></p> -->
-        <h1>Profile</h1>
-     </header>
-     <div class="content">
-         <h1>チルとも！</h1>
-         <p>HTML、CSSの勉強中です。</p>
-         <p><s>初めてなので多めに見て</s></p>
-         <br>
-         <h2>自己紹介</h2>
-         <p>専門学校で情報系の勉強をしています。</p>
-         <p>趣味は、サイクリング、ドライブです。</p>
-         <p>
-          <a href="https://hatori0721.github.io/profile/blog/index.html">リンクページへ</a>
-          <a href=”https://google.com/” target=”_blank”><img src="../img/twitter.png" title="Twitterはこちら" height="40px">
-          <a href=”https://google.com/” target=”_blank”><img src="/img/instagram.png" title="Instagramはこちら" height="40px">
-        
-         </p>
-         <!-- <p>Email : t.hatori@gmail.com</p> -->
-         <!-- <p><button name="button1">クリック</button></p> -->
-         <p>Email:</p>
-     </div>
-    
-  </body>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Markdownライブラリ -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+
+<header class="topNavigation">
+    <h1>Profile</h1>
+</header>
+
+<div class="content">
+
+    <!-- Markdownが表示される場所 -->
+    <div id="markdown-content">
+        読み込み中...
+    </div>
+
+</div>
+
+<script>
+fetch("posts/first.md")
+    .then(response => response.text())
+    .then(text => {
+        document.getElementById("markdown-content").innerHTML = marked.parse(text);
+    })
+    .catch(error => {
+        document.getElementById("markdown-content").innerHTML =
+            "<p>記事を読み込めませんでした。</p>";
+        console.error(error);
+    });
+</script>
+
+</body>
 </html>
